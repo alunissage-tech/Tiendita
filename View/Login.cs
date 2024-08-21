@@ -28,10 +28,10 @@ namespace View
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            string usuario = textBox1.Text;
-            string password = textBox2.Text;
+            string usuario = txtUsername.Text;
+            string password = txtPassword.Text;
 
             // Aquí iría la lógica para validar el login.
             if (usuario == "admin" && password == "1234")
@@ -60,30 +60,30 @@ namespace View
             int formCenterY = this.ClientSize.Height / 2;
 
             // Posiciones calculadas para centrar los controles verticalmente
-            int textBox1Y = formCenterY - (textBox1.Height + textBox2.Height + checkBox1.Height + button1.Height + 40) / 2; // 40 es la suma de los márgenes entre los controles
-            int textBox2Y = textBox1Y + textBox1.Height + 10; // 10 es el margen entre textBox1 y textBox2
-            int checkBox1Y = textBox2Y + textBox2.Height + 10;
-            int button1Y = checkBox1Y + checkBox1.Height + 20;
+            int txtUsernameY = formCenterY - (txtUsername.Height + txtPassword.Height + chkRememberMe.Height + btnLogin.Height + 40) / 2; // 40 es la suma de los márgenes entre los controles
+            int txtPasswordY = txtUsernameY + txtUsername.Height + 10; // 10 es el margen entre txtUsername y txtPassword
+            int chkRememberMeY = txtPasswordY + txtPassword.Height + 10;
+            int btnLoginY = chkRememberMeY + chkRememberMe.Height + 20;
 
             // Centrando los controles horizontalmente
-            textBox1.Left = formCenterX - textBox1.Width / 2;
-            textBox1.Top = textBox1Y;
+            txtUsername.Left = formCenterX - txtUsername.Width / 2;
+            txtUsername.Top = txtUsernameY;
 
-            textBox2.Left = formCenterX - textBox2.Width / 2;
-            textBox2.Top = textBox2Y;
+            txtPassword.Left = formCenterX - txtPassword.Width / 2;
+            txtPassword.Top = txtPasswordY;
 
-            checkBox1.Left = formCenterX - checkBox1.Width / 2;
-            checkBox1.Top = checkBox1Y;
+            chkRememberMe.Left = formCenterX - chkRememberMe.Width / 2;
+            chkRememberMe.Top = chkRememberMeY;
 
-            button1.Left = formCenterX - button1.Width / 2;
-            button1.Top = button1Y;
+            btnLogin.Left = formCenterX - btnLogin.Width / 2;
+            btnLogin.Top = btnLoginY;
 
             // Alinear las etiquetas con los campos de texto
-            label1.Left = textBox1.Left - label1.Width - 10; // 10 es un margen
-            label1.Top = textBox1.Top + (textBox1.Height - label1.Height) / 2;
+            lblUsername.Left = txtUsername.Left - lblUsername.Width - 10; // 10 es un margen
+            lblUsername.Top = txtUsername.Top + (txtUsername.Height - lblUsername.Height) / 2;
 
-            label2.Left = textBox2.Left - label2.Width - 10;
-            label2.Top = textBox2.Top + (textBox2.Height - label2.Height) / 2;
+            lblPassword.Left = txtPassword.Left - lblPassword.Width - 10;
+            lblPassword.Top = txtPassword.Top + (txtPassword.Height - lblPassword.Height) / 2;
         }
     }
 }
