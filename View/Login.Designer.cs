@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.textBox1 = new MaterialSkin.Controls.MaterialTextBox();
             this.textBox2 = new MaterialSkin.Controls.MaterialTextBox();
             this.label1 = new MaterialSkin.Controls.MaterialLabel();
@@ -147,6 +148,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Login";
             this.Text = "Login";
+            this.Resize += new System.EventHandler(this.Login_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
