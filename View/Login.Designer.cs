@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.txtUsername = new MaterialSkin.Controls.MaterialTextBox();
             this.txtPassword = new MaterialSkin.Controls.MaterialTextBox();
             this.lblUsername = new MaterialSkin.Controls.MaterialLabel();
