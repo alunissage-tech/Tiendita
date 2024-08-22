@@ -69,6 +69,7 @@
     <Compile Include="UserControls\Header.Designer.cs">
       <DependentUpon>Header.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ThemeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controller\Controller.csproj">

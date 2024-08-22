@@ -74,15 +74,9 @@ namespace View.UserControls
         /// </summary>
         private void BtnThemeSwitch_Click(object sender, EventArgs e)
         {
-            if (parentForm.materialSkinManager.Theme == MaterialSkinManager.Themes.LIGHT)
-            {
-                parentForm.ApplyDarkTheme();
-            }
-            else
-            {
-                parentForm.ApplyLightTheme();
-            }
+            ThemeManager.ToggleTheme(parentForm);
         }
+
 
         /// <summary>
         /// Handles the Click event of the settings button.

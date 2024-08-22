@@ -17,6 +17,7 @@ namespace View
             Header header = new Header(this);
             this.Controls.Add(header);
             header.Dock = DockStyle.Top;
+            ThemeManager.ApplyTheme(this);
 
             // Initialize navigation buttons
             Button btnProducts = new Button { Text = "Products" };
