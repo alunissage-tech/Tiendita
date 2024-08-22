@@ -6,68 +6,77 @@ using View.UserControls;
 
 namespace View
 {
+    /// <summary>
+    /// Represents the login form of the application.
+    /// Allows the user to enter credentials and access the system.
+    /// </summary>
     public partial class Login : BaseMaterialForm
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Login"/> class.
+        /// Configures the header, centers the controls, and sets the initial window position.
+        /// </summary>
         public Login()
         {
             InitializeComponent();
 
-            // Agregar el Header para el cambio de tema
             Header header = new Header(this);
             this.Controls.Add(header);
             header.Dock = DockStyle.Top;
 
-            // Asegurar que los controles estén centrados al iniciar
             CenterControls();
-
-            // Establecer la ventana en el centro de la pantalla al iniciar
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-
+        /// <summary>
+        /// Handles the Click event of the login button.
+        /// Validates the user credentials and grants access if they are correct.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsername.Text;
+            string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            // Aquí iría la lógica para validar el login.
-            if (usuario == "admin" && password == "1234")
+            if (username == "admin" && password == "1234")
             {
-                MessageBox.Show("Login exitoso");
-                // Aquí podrías redirigir al usuario al menú principal, por ejemplo:
-                // var mainMenu = new MainMenu();
-                // mainMenu.Show();
-                // this.Hide();
+                MessageBox.Show("Login successful");
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña incorrectos");
+                MessageBox.Show("Invalid username or password");
             }
         }
 
+        /// <summary>
+        /// Handles the Resize event of the login form.
+        /// Ensures the controls remain centered when the window is resized.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void Login_Resize(object sender, EventArgs e)
         {
             CenterControls();
         }
 
+        /// <summary>
+        /// Centers the controls within the form, both horizontally and vertically.
+        /// </summary>
         private void CenterControls()
         {
             int formCenterX = this.ClientSize.Width / 2;
             int formCenterY = this.ClientSize.Height / 2;
 
-            int txtUsernameY = formCenterY - (txtUsername.Height + txtPassword.Height + chkRememberMe.Height + btnLogin.Height + 40) / 2;
+            int txtUsernameY = formCenterY - (txtUsername.Height + txtPassword.Height + btnLogin.Height + 30) / 2;
             int txtPasswordY = txtUsernameY + txtUsername.Height + 10;
-            int chkRememberMeY = txtPasswordY + txtPassword.Height + 10;
-            int btnLoginY = chkRememberMeY + chkRememberMe.Height + 20;
+            int btnLoginY = txtPasswordY + txtPassword.Height + 20;
 
             txtUsername.Left = formCenterX - txtUsername.Width / 2;
             txtUsername.Top = txtUsernameY;
 
             txtPassword.Left = formCenterX - txtPassword.Width / 2;
             txtPassword.Top = txtPasswordY;
-
-            chkRememberMe.Left = formCenterX - chkRememberMe.Width / 2;
-            chkRememberMe.Top = chkRememberMeY;
 
             btnLogin.Left = formCenterX - btnLogin.Width / 2;
             btnLogin.Top = btnLoginY;
