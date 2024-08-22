@@ -1,5 +1,4 @@
 ﻿using MaterialSkin;
-using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
 
@@ -25,8 +24,8 @@ namespace View.UserControls
 
             // Initialize ToolStrip and add buttons
             ToolStrip toolStrip = new ToolStrip();
-            ToolStripButton btnThemeSwitch = new ToolStripButton("Switch Theme");
-            ToolStripButton btnSettings = new ToolStripButton("Settings");
+            ToolStripButton btnThemeSwitch = new ToolStripButton("Cambiar tema");
+            ToolStripButton btnSettings = new ToolStripButton("Configuraciones");
 
             // Add event handlers for buttons
             btnThemeSwitch.Click += BtnThemeSwitch_Click;
