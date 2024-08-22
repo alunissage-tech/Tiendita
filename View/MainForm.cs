@@ -57,22 +57,14 @@ namespace View
                 Visible = true
             };
 
-            // Get the path of the background image
-            //string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "mainform_background.png");
-
-            //if (File.Exists(imagePath))
-            //{
-            //    defaultPanel.BackgroundImage = Image.FromFile(imagePath);
-            //    defaultPanel.BackgroundImageLayout = ImageLayout.Stretch; // Supports resizing
-            //}
-            //else
-            //{
-            //    MessageBox.Show($"Background image not found at:\n{imagePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
             this.Controls.Add(defaultPanel);
             defaultPanel.BringToFront();
+
+            Image backgroundImage = Properties.Resources.mainform_background;
+            defaultPanel.BackgroundImage = backgroundImage;
+            defaultPanel.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
 
         /// <summary>
         /// Opens a new tab or selects an existing one.

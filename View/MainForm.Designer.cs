@@ -50,7 +50,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.header);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "TIENDITA";
             this.ResumeLayout(false);
         }
     }
