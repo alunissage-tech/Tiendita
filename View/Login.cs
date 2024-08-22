@@ -28,7 +28,8 @@ namespace View
 
         /// <summary>
         /// Handles the Click event of the login button.
-        /// Validates the user credentials and grants access if they are correct.
+        /// Validates the user credentials and navigates to the MainForm if they are correct.
+        /// If the credentials are invalid, an error message is displayed.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
@@ -37,15 +38,24 @@ namespace View
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
+            // Validate credentials
             if (username == "admin" && password == "1234")
             {
-                MessageBox.Show("Login successful");
+                // Create an instance of MainForm
+                MainForm mainForm = new MainForm();
+
+                // Show the MainForm
+                mainForm.Show();
+
+                // Hide the Login form
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Invalid username or password");
             }
         }
+
 
         /// <summary>
         /// Handles the Resize event of the login form.

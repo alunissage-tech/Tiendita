@@ -1,4 +1,5 @@
 ﻿using MaterialSkin;
+using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
 
@@ -11,9 +12,12 @@ namespace View.UserControls
     public partial class Header : UserControl
     {
         private BaseMaterialForm parentForm;
+        private ToolStrip toolStrip;
         private ToolStripButton btnThemeSwitch;
         private ToolStripButton btnSettings;
-        private ToolStrip toolStrip;
+        private ToolStripButton btnProducts;
+        private ToolStripButton btnSales;
+        private ToolStripButton btnInvoices;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Header"/> class.
@@ -25,24 +29,29 @@ namespace View.UserControls
             InitializeComponent();
             parentForm = parent;
 
-            // Initialize ToolStrip and add buttons
+            // Initialize ToolStrip and buttons
             toolStrip = new ToolStrip();
-            btnThemeSwitch = new ToolStripButton("Cambiar tema");
-            btnSettings = new ToolStripButton("Configuraciones");
+            btnThemeSwitch = new ToolStripButton("Change Theme");
+            btnSettings = new ToolStripButton("Settings");
+            btnProducts = new ToolStripButton("Products");
+            btnSales = new ToolStripButton("Sales");
+            btnInvoices = new ToolStripButton("Invoices");
 
             // Add event handlers for buttons
             btnThemeSwitch.Click += BtnThemeSwitch_Click;
             btnSettings.Click += BtnSettings_Click;
+            btnProducts.Click += (s, e) => ShowMessage("Products View");
+            btnSales.Click += (s, e) => ShowMessage("Sales View");
+            btnInvoices.Click += (s, e) => ShowMessage("Invoices View");
 
             // Add buttons to ToolStrip
-            toolStrip.Items.Add(btnThemeSwitch);
-            toolStrip.Items.Add(btnSettings);
+            toolStrip.Items.AddRange(new ToolStripItem[] { btnThemeSwitch, btnSettings, btnProducts, btnSales, btnInvoices });
 
             // Add ToolStrip to the Header control
             this.Controls.Add(toolStrip);
             toolStrip.Dock = DockStyle.Top;
 
-            // Default visibility configuration (e.g., for login screen)
+            // Default visibility configuration
             SetButtonVisibility(isLoginScreen: true);
         }
 
@@ -54,6 +63,9 @@ namespace View.UserControls
         {
             btnThemeSwitch.Visible = true;  // Always visible
             btnSettings.Visible = !isLoginScreen;  // Only visible after login
+            btnProducts.Visible = !isLoginScreen;
+            btnSales.Visible = !isLoginScreen;
+            btnInvoices.Visible = !isLoginScreen;
         }
 
         /// <summary>
@@ -78,8 +90,16 @@ namespace View.UserControls
         /// </summary>
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            // Code to open settings form or perform other actions
             MessageBox.Show("Settings clicked");
+        }
+
+        /// <summary>
+        /// Displays a message indicating the view that has been selected.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        private void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }
