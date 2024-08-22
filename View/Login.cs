@@ -14,7 +14,7 @@ namespace View
             // Configuración de MaterialSkin
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; // Puedes cambiar a DARK si lo prefieres
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(
                 Primary.Blue600, Primary.Blue700,
                 Primary.Blue200, Accent.LightBlue200,
