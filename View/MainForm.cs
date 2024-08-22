@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using View.UserControls;
 
 namespace View
 {
@@ -18,16 +19,41 @@ namespace View
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MinimumSize = new Size(800, 600);
 
+            // Suscribe to events from Header
+            header.ProductsClicked += (s, e) => OpenTab("Products", new ProductsView());
+            header.SalesClicked += (s, e) => OpenTab("Sales", new SalesView());
+            header.InvoicesClicked += (s, e) => OpenTab("Invoices", new InvoicesView());
+
             header.SetButtonVisibility(isLoginScreen: false);
         }
 
         /// <summary>
-        /// Displays a message indicating the view that has been selected.
+        /// Opens a new tab or selects an existing one.
         /// </summary>
-        /// <param name="message">The message to display.</param>
-        private void ShowMessage(string message)
+        /// <param name="tabName">The name of the tab to open.</param>
+        /// <param name="view">The UserControl to display in the tab.</param>
+        private void OpenTab(string tabName, UserControl view)
         {
-            MessageBox.Show(message);
+            // Check if the tab already exists
+            foreach (TabPage tab in tabControl.TabPages)
+            {
+                if (tab.Text == tabName)
+                {
+                    tabControl.SelectedTab = tab;
+                    return;
+                }
+            }
+
+            // Create a new tab page if it doesn't exist
+            TabPage newTab = new TabPage(tabName)
+            {
+                Dock = DockStyle.Fill
+            };
+
+            view.Dock = DockStyle.Fill;
+            newTab.Controls.Add(view);
+            tabControl.TabPages.Add(newTab);
+            tabControl.SelectedTab = newTab;
         }
     }
 }

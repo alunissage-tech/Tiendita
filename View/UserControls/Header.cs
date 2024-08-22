@@ -13,6 +13,10 @@ namespace View.UserControls
     {
         private BaseMaterialForm parentForm;
 
+        public event EventHandler ProductsClicked;
+        public event EventHandler SalesClicked;
+        public event EventHandler InvoicesClicked;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Header"/> class.
         /// Configures the ToolStrip with various buttons and adds it to the header.
@@ -26,9 +30,9 @@ namespace View.UserControls
             // Add event handlers for buttons
             btnThemeSwitch.Click += BtnThemeSwitch_Click;
             btnSettings.Click += BtnSettings_Click;
-            btnProducts.Click += (s, e) => ShowMessage("Products View");
-            btnSales.Click += (s, e) => ShowMessage("Sales View");
-            btnInvoices.Click += (s, e) => ShowMessage("Invoices View");
+            btnProducts.Click += (s, e) => ProductsClicked?.Invoke(this, EventArgs.Empty);
+            btnSales.Click += (s, e) => SalesClicked?.Invoke(this, EventArgs.Empty);
+            btnInvoices.Click += (s, e) => InvoicesClicked?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -37,29 +41,17 @@ namespace View.UserControls
         /// <param name="isLoginScreen">True if the current screen is the login screen; otherwise, false.</param>
         public void SetButtonVisibility(bool isLoginScreen)
         {
-            if (isLoginScreen)
-            {
-                btnThemeSwitch.Visible = true;
-                btnSettings.Visible = false;
-                btnProducts.Visible = false;
-                btnSales.Visible = false;
-                btnInvoices.Visible = false;
-            }
-            else
-            {
-                btnSettings.Visible = true;
-                btnProducts.Visible = true;
-                btnSales.Visible = true;
-                btnInvoices.Visible = true;
-            }
+            btnThemeSwitch.Visible = true;
+            btnSettings.Visible = !isLoginScreen;
+            btnProducts.Visible = !isLoginScreen;
+            btnSales.Visible = !isLoginScreen;
+            btnInvoices.Visible = !isLoginScreen;
         }
 
         /// <summary>
         /// Handles the Click event of the theme switch button.
         /// Toggles between the light and dark themes in the parent form.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The event data.</param>
         private void BtnThemeSwitch_Click(object sender, EventArgs e)
         {
             ThemeManager.ToggleTheme(parentForm);
@@ -69,20 +61,9 @@ namespace View.UserControls
         /// Handles the Click event of the settings button.
         /// Opens the settings form or performs another action.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The event data.</param>
         private void BtnSettings_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Settings clicked");
-        }
-
-        /// <summary>
-        /// Displays a message indicating the view that has been selected.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        private void ShowMessage(string message)
-        {
-            MessageBox.Show(message);
         }
     }
 }

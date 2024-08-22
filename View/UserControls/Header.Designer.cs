@@ -4,10 +4,10 @@
     {
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton btnThemeSwitch;
-        private System.Windows.Forms.ToolStripButton btnSettings;
-        private System.Windows.Forms.ToolStripButton btnProducts;
-        private System.Windows.Forms.ToolStripButton btnSales;
-        private System.Windows.Forms.ToolStripButton btnInvoices;
+        public System.Windows.Forms.ToolStripButton btnSettings;
+        public System.Windows.Forms.ToolStripButton btnProducts;
+        public System.Windows.Forms.ToolStripButton btnSales;
+        public System.Windows.Forms.ToolStripButton btnInvoices;
 
         /// <summary> 
         /// Variable del diseñador necesaria.
