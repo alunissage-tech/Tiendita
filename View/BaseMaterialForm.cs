@@ -6,7 +6,7 @@ namespace View
 {
     public class BaseMaterialForm : MaterialForm
     {
-        protected MaterialSkinManager materialSkinManager;
+        public MaterialSkinManager materialSkinManager;
 
         public BaseMaterialForm()
         {
