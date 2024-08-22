@@ -1,89 +1,89 @@
-﻿using MaterialSkin;
-using MaterialSkin.Controls;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using View.UserControls;
 
 namespace View
 {
-    public partial class Login : MaterialForm
+    /// <summary>
+    /// Represents the login form of the application.
+    /// Allows the user to enter credentials and access the system.
+    /// </summary>
+    public partial class Login : BaseMaterialForm
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Login"/> class.
+        /// Configures the header, centers the controls, and sets the initial window position.
+        /// </summary>
         public Login()
         {
             InitializeComponent();
 
-            // Configuración de MaterialSkin
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; // Puedes cambiar a DARK si lo prefieres
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue600, Primary.Blue700,
-                Primary.Blue200, Accent.LightBlue200,
-                TextShade.WHITE
-            );
+            Header header = new Header(this);
+            this.Controls.Add(header);
+            header.Dock = DockStyle.Top;
 
-            // Asegurar que los controles estén centrados al iniciar
             CenterControls();
-
-            // Establecer la ventana en el centro de la pantalla al iniciar
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the login button.
+        /// Validates the user credentials and grants access if they are correct.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            string usuario = textBox1.Text;
-            string password = textBox2.Text;
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
 
-            // Aquí iría la lógica para validar el login.
-            if (usuario == "admin" && password == "1234")
+            if (username == "admin" && password == "1234")
             {
-                MessageBox.Show("Login exitoso");
-                // Aquí podrías redirigir al usuario al menú principal, por ejemplo:
-                // var mainMenu = new MainMenu();
-                // mainMenu.Show();
-                // this.Hide();
+                MessageBox.Show("Login successful");
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña incorrectos");
+                MessageBox.Show("Invalid username or password");
             }
         }
 
+        /// <summary>
+        /// Handles the Resize event of the login form.
+        /// Ensures the controls remain centered when the window is resized.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void Login_Resize(object sender, EventArgs e)
         {
             CenterControls();
         }
 
+        /// <summary>
+        /// Centers the controls within the form, both horizontally and vertically.
+        /// </summary>
         private void CenterControls()
         {
-            // Calcular la posición centrada para cada control, tanto horizontal como verticalmente
             int formCenterX = this.ClientSize.Width / 2;
             int formCenterY = this.ClientSize.Height / 2;
 
-            // Posiciones calculadas para centrar los controles verticalmente
-            int textBox1Y = formCenterY - (textBox1.Height + textBox2.Height + checkBox1.Height + button1.Height + 40) / 2; // 40 es la suma de los márgenes entre los controles
-            int textBox2Y = textBox1Y + textBox1.Height + 10; // 10 es el margen entre textBox1 y textBox2
-            int checkBox1Y = textBox2Y + textBox2.Height + 10;
-            int button1Y = checkBox1Y + checkBox1.Height + 20;
+            int txtUsernameY = formCenterY - (txtUsername.Height + txtPassword.Height + btnLogin.Height + 30) / 2;
+            int txtPasswordY = txtUsernameY + txtUsername.Height + 10;
+            int btnLoginY = txtPasswordY + txtPassword.Height + 20;
 
-            // Centrando los controles horizontalmente
-            textBox1.Left = formCenterX - textBox1.Width / 2;
-            textBox1.Top = textBox1Y;
+            txtUsername.Left = formCenterX - txtUsername.Width / 2;
+            txtUsername.Top = txtUsernameY;
 
-            textBox2.Left = formCenterX - textBox2.Width / 2;
-            textBox2.Top = textBox2Y;
+            txtPassword.Left = formCenterX - txtPassword.Width / 2;
+            txtPassword.Top = txtPasswordY;
 
-            checkBox1.Left = formCenterX - checkBox1.Width / 2;
-            checkBox1.Top = checkBox1Y;
+            btnLogin.Left = formCenterX - btnLogin.Width / 2;
+            btnLogin.Top = btnLoginY;
 
-            button1.Left = formCenterX - button1.Width / 2;
-            button1.Top = button1Y;
+            lblUsername.Left = txtUsername.Left - lblUsername.Width - 10;
+            lblUsername.Top = txtUsername.Top + (txtUsername.Height - lblUsername.Height) / 2;
 
-            // Alinear las etiquetas con los campos de texto
-            label1.Left = textBox1.Left - label1.Width - 10; // 10 es un margen
-            label1.Top = textBox1.Top + (textBox1.Height - label1.Height) / 2;
-
-            label2.Left = textBox2.Left - label2.Width - 10;
-            label2.Top = textBox2.Top + (textBox2.Height - label2.Height) / 2;
+            lblPassword.Left = txtPassword.Left - lblPassword.Width - 10;
+            lblPassword.Top = txtPassword.Top + (txtPassword.Height - lblPassword.Height) / 2;
         }
     }
 }
