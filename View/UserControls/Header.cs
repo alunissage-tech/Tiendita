@@ -31,11 +31,11 @@ namespace View.UserControls
 
             // Initialize ToolStrip and buttons
             toolStrip = new ToolStrip();
-            btnThemeSwitch = new ToolStripButton("Change Theme");
-            btnSettings = new ToolStripButton("Settings");
-            btnProducts = new ToolStripButton("Products");
-            btnSales = new ToolStripButton("Sales");
-            btnInvoices = new ToolStripButton("Invoices");
+            btnThemeSwitch = new ToolStripButton("Cambiar tema");
+            btnSettings = new ToolStripButton("Configuraciones");
+            btnProducts = new ToolStripButton("Productos");
+            btnSales = new ToolStripButton("Ventas");
+            btnInvoices = new ToolStripButton("Facturas");
 
             // Add event handlers for buttons
             btnThemeSwitch.Click += BtnThemeSwitch_Click;
