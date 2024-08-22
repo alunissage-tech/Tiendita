@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using View.UserControls;
 
 namespace View
 {
@@ -15,9 +14,6 @@ namespace View
         {
             InitializeComponent();
 
-            Header header = new Header(this);
-            this.Controls.Add(header);
-            header.Dock = DockStyle.Top;
             ThemeManager.ApplyTheme(this);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MinimumSize = new Size(800, 600);
