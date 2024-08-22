@@ -44,15 +44,12 @@ namespace View.UserControls
             btnSales.Click += (s, e) => ShowMessage("Sales View");
             btnInvoices.Click += (s, e) => ShowMessage("Invoices View");
 
-            // Add buttons to ToolStrip
-            toolStrip.Items.AddRange(new ToolStripItem[] { btnThemeSwitch, btnSettings, btnProducts, btnSales, btnInvoices });
+            // Initially, only add the theme switch button
+            toolStrip.Items.Add(btnThemeSwitch);
 
             // Add ToolStrip to the Header control
             this.Controls.Add(toolStrip);
             toolStrip.Dock = DockStyle.Top;
-
-            // Default visibility configuration
-            SetButtonVisibility(isLoginScreen: true);
         }
 
         /// <summary>
@@ -61,11 +58,28 @@ namespace View.UserControls
         /// <param name="isLoginScreen">True if the current screen is the login screen; otherwise, false.</param>
         public void SetButtonVisibility(bool isLoginScreen)
         {
-            btnThemeSwitch.Visible = true;  // Always visible
-            btnSettings.Visible = !isLoginScreen;  // Only visible after login
-            btnProducts.Visible = !isLoginScreen;
-            btnSales.Visible = !isLoginScreen;
-            btnInvoices.Visible = !isLoginScreen;
+            if (isLoginScreen)
+            {
+                // Solo muestra el botón de cambio de tema durante el login
+                btnThemeSwitch.Visible = true;
+                btnSettings.Visible = false;
+                btnProducts.Visible = false;
+                btnSales.Visible = false;
+                btnInvoices.Visible = false;
+            }
+            else
+            {
+                // Si no estamos en la pantalla de login, asegúrate de que los botones se agreguen y se hagan visibles
+                if (!toolStrip.Items.Contains(btnSettings))
+                {
+                    toolStrip.Items.AddRange(new ToolStripItem[] { btnProducts, btnSales, btnInvoices, btnSettings });
+                }
+
+                btnSettings.Visible = true;
+                btnProducts.Visible = true;
+                btnSales.Visible = true;
+                btnInvoices.Visible = true;
+            }
         }
 
         /// <summary>
@@ -76,7 +90,6 @@ namespace View.UserControls
         {
             ThemeManager.ToggleTheme(parentForm);
         }
-
 
         /// <summary>
         /// Handles the Click event of the settings button.

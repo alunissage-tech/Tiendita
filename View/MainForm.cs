@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using View.UserControls;
 
@@ -18,21 +19,10 @@ namespace View
             this.Controls.Add(header);
             header.Dock = DockStyle.Top;
             ThemeManager.ApplyTheme(this);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.MinimumSize = new Size(800, 600);
 
-            // Initialize navigation buttons
-            Button btnProducts = new Button { Text = "Products" };
-            Button btnSales = new Button { Text = "Sales" };
-            Button btnInvoices = new Button { Text = "Invoices" };
-
-            // Add event handlers for navigation
-            btnProducts.Click += (s, e) => ShowMessage("Products View");
-            btnSales.Click += (s, e) => ShowMessage("Sales View");
-            btnInvoices.Click += (s, e) => ShowMessage("Invoices View");
-
-            // Add buttons to a panel or directly to the form
-            FlowLayoutPanel panel = new FlowLayoutPanel { Dock = DockStyle.Top };
-            panel.Controls.AddRange(new Control[] { btnProducts, btnSales, btnInvoices });
-            this.Controls.Add(panel);
+            header.SetButtonVisibility(isLoginScreen: false);
         }
 
         /// <summary>
