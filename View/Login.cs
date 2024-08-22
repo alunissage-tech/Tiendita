@@ -19,6 +19,7 @@ namespace View
             InitializeComponent();
 
             Header header = new Header(this);
+            header.SetButtonVisibility(true);
             this.Controls.Add(header);
             header.Dock = DockStyle.Top;
 
