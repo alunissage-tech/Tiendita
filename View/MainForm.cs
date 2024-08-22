@@ -20,9 +20,9 @@ namespace View
             this.MinimumSize = new Size(800, 600);
 
             // Suscribe to events from Header
-            header.ProductsClicked += (s, e) => OpenTab("Products", new ProductsView());
-            header.SalesClicked += (s, e) => OpenTab("Sales", new SalesView());
-            header.InvoicesClicked += (s, e) => OpenTab("Invoices", new InvoicesView());
+            header.ProductsClicked += (s, e) => OpenTab("Productos", new ProductsView());
+            header.SalesClicked += (s, e) => OpenTab("Ventas", new SalesView());
+            header.InvoicesClicked += (s, e) => OpenTab("facturas", new InvoicesView());
 
             header.SetButtonVisibility(isLoginScreen: false);
         }
