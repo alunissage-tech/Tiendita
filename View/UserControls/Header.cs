@@ -5,12 +5,15 @@ using System.Windows.Forms;
 namespace View.UserControls
 {
     /// <summary>
-    /// Represents a header control that includes a ToolStrip with multiple buttons, 
+    /// Represents a header control that includes a ToolStrip with multiple buttons,
     /// providing persistent navigation and functionality across the application.
     /// </summary>
     public partial class Header : UserControl
     {
         private BaseMaterialForm parentForm;
+        private ToolStripButton btnThemeSwitch;
+        private ToolStripButton btnSettings;
+        private ToolStrip toolStrip;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Header"/> class.
@@ -23,9 +26,9 @@ namespace View.UserControls
             parentForm = parent;
 
             // Initialize ToolStrip and add buttons
-            ToolStrip toolStrip = new ToolStrip();
-            ToolStripButton btnThemeSwitch = new ToolStripButton("Cambiar tema");
-            ToolStripButton btnSettings = new ToolStripButton("Configuraciones");
+            toolStrip = new ToolStrip();
+            btnThemeSwitch = new ToolStripButton("Cambiar tema");
+            btnSettings = new ToolStripButton("Configuraciones");
 
             // Add event handlers for buttons
             btnThemeSwitch.Click += BtnThemeSwitch_Click;
@@ -38,6 +41,19 @@ namespace View.UserControls
             // Add ToolStrip to the Header control
             this.Controls.Add(toolStrip);
             toolStrip.Dock = DockStyle.Top;
+
+            // Default visibility configuration (e.g., for login screen)
+            SetButtonVisibility(isLoginScreen: true);
+        }
+
+        /// <summary>
+        /// Sets the visibility of the buttons based on the current screen.
+        /// </summary>
+        /// <param name="isLoginScreen">True if the current screen is the login screen; otherwise, false.</param>
+        public void SetButtonVisibility(bool isLoginScreen)
+        {
+            btnThemeSwitch.Visible = true;  // Always visible
+            btnSettings.Visible = !isLoginScreen;  // Only visible after login
         }
 
         /// <summary>
