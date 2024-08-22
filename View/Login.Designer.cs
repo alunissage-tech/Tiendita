@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.txtUsername = new MaterialSkin.Controls.MaterialTextBox();
             this.txtPassword = new MaterialSkin.Controls.MaterialTextBox();
             this.lblUsername = new MaterialSkin.Controls.MaterialLabel();
             this.lblPassword = new MaterialSkin.Controls.MaterialLabel();
             this.btnLogin = new MaterialSkin.Controls.MaterialButton();
-            this.chkRememberMe = new MaterialSkin.Controls.MaterialCheckbox();
             this.SuspendLayout();
             // 
             // txtUsername
             // 
             this.txtUsername.AnimateReadOnly = false;
+            this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsername.Depth = 0;
             this.txtUsername.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtUsername.Hint = "Usuario";
             this.txtUsername.LeadingIcon = null;
             this.txtUsername.Location = new System.Drawing.Point(300, 150);
@@ -58,9 +58,11 @@
             // txtPassword
             // 
             this.txtPassword.AnimateReadOnly = false;
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Depth = 0;
             this.txtPassword.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPassword.Hint = "Contraseña";
             this.txtPassword.LeadingIcon = null;
             this.txtPassword.Location = new System.Drawing.Point(300, 220);
@@ -77,8 +79,10 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
+            this.lblUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lblUsername.Depth = 0;
             this.lblUsername.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblUsername.Location = new System.Drawing.Point(200, 160);
             this.lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblUsername.Name = "lblUsername";
@@ -89,8 +93,10 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
+            this.lblPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lblPassword.Depth = 0;
             this.lblPassword.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblPassword.Location = new System.Drawing.Point(200, 230);
             this.lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPassword.Name = "lblPassword";
@@ -102,8 +108,10 @@
             // 
             this.btnLogin.AutoSize = false;
             this.btnLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.btnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnLogin.Depth = 0;
+            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnLogin.HighEmphasis = true;
             this.btnLogin.Icon = null;
             this.btnLogin.Location = new System.Drawing.Point(300, 334);
@@ -116,36 +124,20 @@
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnLogin.UseAccentColor = false;
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // chkRememberMe
-            // 
-            this.chkRememberMe.AutoSize = true;
-            this.chkRememberMe.Depth = 0;
-            this.chkRememberMe.Location = new System.Drawing.Point(300, 282);
-            this.chkRememberMe.Margin = new System.Windows.Forms.Padding(0);
-            this.chkRememberMe.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chkRememberMe.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chkRememberMe.Name = "chkRememberMe";
-            this.chkRememberMe.ReadOnly = false;
-            this.chkRememberMe.Ripple = true;
-            this.chkRememberMe.Size = new System.Drawing.Size(120, 37);
-            this.chkRememberMe.TabIndex = 5;
-            this.chkRememberMe.Text = "Recordarme";
-            this.chkRememberMe.UseVisualStyleBackColor = true;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chkRememberMe);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "Login";
             this.Text = "Login";
             this.Resize += new System.EventHandler(this.Login_Resize);
@@ -161,6 +153,5 @@
         private MaterialSkin.Controls.MaterialLabel lblUsername;
         private MaterialSkin.Controls.MaterialLabel lblPassword;
         private MaterialSkin.Controls.MaterialButton btnLogin;
-        private MaterialSkin.Controls.MaterialCheckbox chkRememberMe;
     }
 }
