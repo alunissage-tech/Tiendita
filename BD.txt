@@ -1,0 +1,52 @@
+CREATE DATABASE Tiendita;
+GO
+
+USE Tiendita;
+GO
+
+CREATE TABLE USUARIOS (
+    IDUsuario INT PRIMARY KEY IDENTITY(1,1),
+    NombreUsuario VARCHAR(50) NOT NULL UNIQUE,
+    Contrasena VARBINARY(256) NOT NULL,
+    NombreCompleto VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    UltimoAcceso DATETIME
+);
+
+CREATE TABLE PRODUCTOS (
+    CodigoProducto INT PRIMARY KEY IDENTITY(1,1),
+    NombreProducto VARCHAR(100) NOT NULL,
+    Precio DECIMAL(10, 2) NOT NULL,
+    Stock INT NOT NULL,
+    Descripcion VARCHAR (200)
+);
+
+CREATE TABLE FACTURAS (
+    IDFactura INT PRIMARY KEY IDENTITY(1,1),
+    Fecha DATE NOT NULL,
+    CodigoProducto INT FOREIGN KEY REFERENCES PRODUCTOS(CodigoProducto),
+    NombreProducto VARCHAR(100) NOT NULL,
+    Cantidad INT NOT NULL,
+    Total DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE CAJA (
+    IDCaja INT PRIMARY KEY IDENTITY(1,1),
+    Fecha_Apertura DATETIME NOT NULL,
+    Fecha_Cierre DATETIME,
+    Responsable VARCHAR(50) NOT NULL,
+    Ingreso DECIMAL(10, 2) NOT NULL,
+    Egreso DECIMAL(10, 2) NOT NULL,
+    Observaciones VARCHAR(200) NULL,
+    Total DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE VENTAS (
+    IDVenta INT PRIMARY KEY IDENTITY(1,1),
+    IDFactura INT FOREIGN KEY REFERENCES FACTURAS(IDFactura),
+    Comentario VARCHAR(250) NULL,
+    FormaDePago VARCHAR(50) CHECK (FormaDePago IN ('Transferencia', 'Efectivo')),
+    Fecha DATETIME NOT NULL,
+    TotalVenta DECIMAL(10, 2) NOT NULL
+);
