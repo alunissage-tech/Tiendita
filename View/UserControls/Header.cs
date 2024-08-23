@@ -1,4 +1,5 @@
 ﻿using MaterialSkin;
+using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
 
@@ -11,9 +12,10 @@ namespace View.UserControls
     public partial class Header : UserControl
     {
         private BaseMaterialForm parentForm;
-        private ToolStripButton btnThemeSwitch;
-        private ToolStripButton btnSettings;
-        private ToolStrip toolStrip;
+
+        public event EventHandler ProductsClicked;
+        public event EventHandler SalesClicked;
+        public event EventHandler InvoicesClicked;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Header"/> class.
@@ -25,25 +27,12 @@ namespace View.UserControls
             InitializeComponent();
             parentForm = parent;
 
-            // Initialize ToolStrip and add buttons
-            toolStrip = new ToolStrip();
-            btnThemeSwitch = new ToolStripButton("Cambiar tema");
-            btnSettings = new ToolStripButton("Configuraciones");
-
             // Add event handlers for buttons
             btnThemeSwitch.Click += BtnThemeSwitch_Click;
             btnSettings.Click += BtnSettings_Click;
-
-            // Add buttons to ToolStrip
-            toolStrip.Items.Add(btnThemeSwitch);
-            toolStrip.Items.Add(btnSettings);
-
-            // Add ToolStrip to the Header control
-            this.Controls.Add(toolStrip);
-            toolStrip.Dock = DockStyle.Top;
-
-            // Default visibility configuration (e.g., for login screen)
-            SetButtonVisibility(isLoginScreen: true);
+            btnProducts.Click += (s, e) => ProductsClicked?.Invoke(this, EventArgs.Empty);
+            btnSales.Click += (s, e) => SalesClicked?.Invoke(this, EventArgs.Empty);
+            btnInvoices.Click += (s, e) => InvoicesClicked?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -52,8 +41,11 @@ namespace View.UserControls
         /// <param name="isLoginScreen">True if the current screen is the login screen; otherwise, false.</param>
         public void SetButtonVisibility(bool isLoginScreen)
         {
-            btnThemeSwitch.Visible = true;  // Always visible
-            btnSettings.Visible = !isLoginScreen;  // Only visible after login
+            btnThemeSwitch.Visible = true;
+            btnSettings.Visible = !isLoginScreen;
+            btnProducts.Visible = !isLoginScreen;
+            btnSales.Visible = !isLoginScreen;
+            btnInvoices.Visible = !isLoginScreen;
         }
 
         /// <summary>
@@ -62,14 +54,7 @@ namespace View.UserControls
         /// </summary>
         private void BtnThemeSwitch_Click(object sender, EventArgs e)
         {
-            if (parentForm.materialSkinManager.Theme == MaterialSkinManager.Themes.LIGHT)
-            {
-                parentForm.ApplyDarkTheme();
-            }
-            else
-            {
-                parentForm.ApplyLightTheme();
-            }
+            ThemeManager.ToggleTheme(parentForm);
         }
 
         /// <summary>
@@ -78,7 +63,6 @@ namespace View.UserControls
         /// </summary>
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            // Code to open settings form or perform other actions
             MessageBox.Show("Settings clicked");
         }
     }

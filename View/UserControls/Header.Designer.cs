@@ -2,6 +2,13 @@
 {
     partial class Header
     {
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton btnThemeSwitch;
+        public System.Windows.Forms.ToolStripButton btnSettings;
+        public System.Windows.Forms.ToolStripButton btnProducts;
+        public System.Windows.Forms.ToolStripButton btnSales;
+        public System.Windows.Forms.ToolStripButton btnInvoices;
+
         /// <summary> 
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -28,18 +35,70 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.btnThemeSwitch = new System.Windows.Forms.ToolStripButton();
+            this.btnSettings = new System.Windows.Forms.ToolStripButton();
+            this.btnProducts = new System.Windows.Forms.ToolStripButton();
+            this.btnSales = new System.Windows.Forms.ToolStripButton();
+            this.btnInvoices = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnThemeSwitch,
+            this.btnProducts,
+            this.btnSales,
+            this.btnInvoices,
+            this.btnSettings});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(526, 25);
+            this.toolStrip.TabIndex = 0;
+            this.toolStrip.Text = "toolStrip";
+            // 
+            // btnThemeSwitch
+            // 
+            this.btnThemeSwitch.Name = "btnThemeSwitch";
+            this.btnThemeSwitch.Size = new System.Drawing.Size(86, 22);
+            this.btnThemeSwitch.Text = "Cambiar tema";
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(87, 22);
+            this.btnSettings.Text = "Configuración";
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.Size = new System.Drawing.Size(65, 22);
+            this.btnProducts.Text = "Productos";
+            // 
+            // btnSales
+            // 
+            this.btnSales.Name = "btnSales";
+            this.btnSales.Size = new System.Drawing.Size(45, 22);
+            this.btnSales.Text = "Ventas";
+            // 
+            // btnInvoices
+            // 
+            this.btnInvoices.Name = "btnInvoices";
+            this.btnInvoices.Size = new System.Drawing.Size(55, 22);
+            this.btnInvoices.Text = "Facturas";
             // 
             // Header
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.toolStrip);
             this.Name = "Header";
-            this.Size = new System.Drawing.Size(200, 50);
+            this.Size = new System.Drawing.Size(526, 50);
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
-
 
         #endregion
     }
