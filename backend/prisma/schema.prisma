@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model caja {
+  idcaja        Int       @id @default(autoincrement())
+  fechaapertura DateTime  @db.Timestamp(6)
+  fechacierre   DateTime? @db.Timestamp(6)
+  responsable   String    @db.VarChar(50)
+  ingreso       Decimal   @db.Decimal(10, 2)
+  egreso        Decimal   @db.Decimal(10, 2)
+  observaciones String?   @db.VarChar(200)
+  total         Decimal   @db.Decimal(10, 2)
+}
+
+model detalle_factura {
+  iddetalle      Int        @id @default(autoincrement())
+  idfactura      Int?
+  codigoproducto Int?
+  cantidad       Int
+  preciounitario Decimal    @db.Decimal(10, 2)
+  total          Decimal    @db.Decimal(10, 2)
+  productos      productos? @relation(fields: [codigoproducto], references: [codigoproducto], onDelete: NoAction, onUpdate: NoAction)
+  facturas       facturas?  @relation(fields: [idfactura], references: [idfactura], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model facturas {
+  idfactura       Int               @id @default(autoincrement())
+  fecha           DateTime          @db.Date
+  idusuario       Int?
+  totalfactura    Decimal           @db.Decimal(10, 2)
+  detalle_factura detalle_factura[]
+  usuarios        usuarios?         @relation(fields: [idusuario], references: [idusuario], onDelete: NoAction, onUpdate: NoAction)
+  ventas          ventas[]
+}
+
+model movimientos_dinero {
+  idmovimiento Int      @id @default(autoincrement())
+  fecha        DateTime @db.Timestamp(6)
+  concepto     String   @db.VarChar(100)
+  monto        Decimal  @db.Decimal(10, 2)
+  comentarios  String?  @db.VarChar(200)
+}
+
+model movimientos_stock {
+  idmovimiento   Int        @id @default(autoincrement())
+  fecha          DateTime   @db.Timestamp(6)
+  codigoproducto Int?
+  ingreso        Int?       @default(0)
+  egreso         Int?       @default(0)
+  comentario     String?    @db.VarChar(200)
+  productos      productos? @relation(fields: [codigoproducto], references: [codigoproducto], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model productos {
+  codigoproducto    Int                 @id @default(autoincrement())
+  nombreproducto    String              @db.VarChar(100)
+  preciocosto       Decimal             @db.Decimal(10, 2)
+  precioventa       Decimal             @db.Decimal(10, 2)
+  stock             Int
+  descripcion       String?             @db.VarChar(200)
+  idproveedor       Int?
+  detalle_factura   detalle_factura[]
+  movimientos_stock movimientos_stock[]
+  proveedores       proveedores?        @relation(fields: [idproveedor], references: [idproveedor], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model proveedores {
+  idproveedor     Int         @id @default(autoincrement())
+  nombreproveedor String      @unique @db.VarChar(100)
+  contacto        String?     @db.VarChar(100)
+  telefono        String?     @db.VarChar(20)
+  email           String?     @db.VarChar(100)
+  direccion       String?     @db.VarChar(200)
+  productos       productos[]
+}
+
+/// We could not retrieve columns for the underlying table. Either it has none or you are missing rights to see them. Please check your privileges.
+// model prueba {
+// }
+
+model usuarios {
+  idusuario      Int        @id @default(autoincrement())
+  nombreusuario  String     @unique @db.VarChar(50)
+  contrasena     Bytes
+  nombrecompleto String     @db.VarChar(100)
+  email          String     @unique @db.VarChar(100)
+  fechacreacion  DateTime?  @default(now()) @db.Timestamp(6)
+  ultimoacceso   DateTime?  @db.Timestamp(6)
+  facturas       facturas[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ventas {
+  idventa     Int       @id @default(autoincrement())
+  idfactura   Int?
+  comentario  String?   @db.VarChar(250)
+  formadepago String?   @db.VarChar(50)
+  fecha       DateTime  @db.Timestamp(6)
+  totalventa  Decimal   @db.Decimal(10, 2)
+  facturas    facturas? @relation(fields: [idfactura], references: [idfactura], onDelete: NoAction, onUpdate: NoAction)
+}
