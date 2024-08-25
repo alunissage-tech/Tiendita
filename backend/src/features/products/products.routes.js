@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/");
+router.get("/", (_req, res) => {
+  res.send("Welcome to Tiendita API");
+});
 
 export default router;

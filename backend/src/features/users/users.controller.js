@@ -1,4 +1,4 @@
-import { createUser } from "./users.service";
+import { createUser } from "./users.service.js";
 
 /**
  * Handles the request to create a new user.

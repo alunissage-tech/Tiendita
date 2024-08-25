@@ -14,7 +14,7 @@ import prisma from "../../database/prismaClient.js";
  */
 export async function generateToken(user) {
   return jwt.sign({ id: user.idusuario }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "1h",
   });
 }
 
@@ -38,8 +38,17 @@ export async function validateUser(username, password) {
   const user = await prisma.usuarios.findUnique({
     where: { nombreusuario: username },
   });
-  if (user && (await bcrypt.compare(password, user.contrasena))) {
-    return user;
+
+  if (
+    user &&
+    typeof password === "string" &&
+    typeof user.contrasena === "object"
+  ) {
+    const hashedPassword = Buffer.from(user.contrasena).toString("utf-8");
+    const match = await bcrypt.compare(password, hashedPassword);
+    if (match) {
+      return user;
+    }
   }
   return null;
 }

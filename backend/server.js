@@ -1,6 +1,5 @@
 import express from "express";
 import router from "./src/index.js";
-import { authenticateToken } from "./src/middleware/auth.js";
 import { generalRateLimiter } from "./src/middleware/rateLimiter.js";
 
 /**
@@ -11,7 +10,6 @@ import { generalRateLimiter } from "./src/middleware/rateLimiter.js";
 const app = express();
 
 app.use(express.json());
-app.use(authenticateToken);
 app.use(generalRateLimiter);
 app.use("/", router);
 

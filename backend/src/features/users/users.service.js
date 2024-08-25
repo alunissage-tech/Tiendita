@@ -1,4 +1,4 @@
-import prisma from "../../database/prismaClient";
+import prisma from "../../database/prismaClient.js";
 
 /**
  * Creates a new user in the database.
