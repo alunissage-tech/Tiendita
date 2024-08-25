@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node --env-file .env server.js",
     "deploy": "vercel --prod",
+    "vercel-build": "prisma generate",
     "bcript": "node bcriptGenerator.js"
   },
   "keywords": [],

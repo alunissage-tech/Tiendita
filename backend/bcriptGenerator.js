@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-const password = "tu_contraseña";
+const password = "1234";
 const saltRounds = 10;
 const hashedPassword = await bcrypt.hash(password, saltRounds);
 console.log(
