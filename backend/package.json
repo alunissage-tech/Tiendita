@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file .env server.js",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "bcript": "node bcriptGenerator.js"
   },
   "keywords": [],
   "author": "",
