@@ -32,6 +32,7 @@ $RECYCLE.BIN/
 
 # Ignore node_modules for projects that might include JS/Node.js dependencies
 node_modules/
+.gitignore
 
 # User-specific files
 *.rsuser
