@@ -6,17 +6,24 @@ using Newtonsoft.Json;
 
 namespace Controller
 {
+    /// <summary>
+    /// Handles authentication-related operations, such as user login and token management.
+    /// </summary>
     public class AuthController
     {
         private static readonly HttpClient client = new HttpClient();
+        private static string authToken;
 
         /// <summary>
         /// Authenticates the user by sending a POST request to the authentication endpoint.
         /// </summary>
         /// <param name="username">The username entered by the user.</param>
         /// <param name="password">The password entered by the user.</param>
-        /// <returns>A task that represents the asynchronous operation, containing a boolean value indicating success or failure.</returns>
-        public async Task<bool> AuthenticateUser(string username, string password)
+        /// <returns>
+        /// A task that represents the asynchronous operation, containing a tuple with a boolean value 
+        /// indicating whether the authentication was successful, and a string containing an error message if any.
+        /// </returns>
+        public async Task<(bool isAuthenticated, string errorMessage)> AuthenticateUser(string username, string password)
         {
             var loginData = new
             {
@@ -36,28 +43,38 @@ namespace Controller
                     string responseContent = await response.Content.ReadAsStringAsync();
                     var tokenData = JsonConvert.DeserializeObject<TokenResponse>(responseContent);
 
-                    // Here we can store the token in a secure place, e.g., in a field or a secure storage
-                    // StoreToken(tokenData.Token); // Example placeholder function
-                    return true; // Authentication successful
+                    authToken = tokenData.Token;
+                    return (true, null);
                 }
                 else
                 {
-                    return false; // Authentication failed
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    return (false, $"Error: {response.StatusCode} - {errorContent}");
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception or show a message
-                // Example: Logger.LogError(ex.Message);
-                return false;
+                return (false, $"Exception: {ex.Message}");
             }
         }
 
         /// <summary>
-        /// Class to deserialize the token response.
+        /// Retrieves the stored authentication token.
+        /// </summary>
+        /// <returns>The JWT token as a string.</returns>
+        public static string GetAuthToken()
+        {
+            return authToken;
+        }
+
+        /// <summary>
+        /// Represents the response received from the authentication endpoint.
         /// </summary>
         private class TokenResponse
         {
+            /// <summary>
+            /// Gets or sets the JWT token.
+            /// </summary>
             [JsonProperty("token")]
             public string Token { get; set; }
         }
