@@ -7,6 +7,9 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        private MaterialSkin.Controls.MaterialCheckbox checkBox_ShowPassword;
+
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -33,6 +36,7 @@
             this.lblUsername = new MaterialSkin.Controls.MaterialLabel();
             this.lblPassword = new MaterialSkin.Controls.MaterialLabel();
             this.btnLogin = new MaterialSkin.Controls.MaterialButton();
+            this.checkBox_ShowPassword = new MaterialSkin.Controls.MaterialCheckbox();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -45,7 +49,7 @@
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtUsername.Hint = "Usuario";
             this.txtUsername.LeadingIcon = null;
-            this.txtUsername.Location = new System.Drawing.Point(300, 150);
+            this.txtUsername.Location = new System.Drawing.Point(297, 140);
             this.txtUsername.MaxLength = 50;
             this.txtUsername.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUsername.Multiline = false;
@@ -65,7 +69,7 @@
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPassword.Hint = "Contraseña";
             this.txtPassword.LeadingIcon = null;
-            this.txtPassword.Location = new System.Drawing.Point(300, 220);
+            this.txtPassword.Location = new System.Drawing.Point(297, 210);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Multiline = false;
@@ -83,7 +87,7 @@
             this.lblUsername.Depth = 0;
             this.lblUsername.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblUsername.Location = new System.Drawing.Point(200, 160);
+            this.lblUsername.Location = new System.Drawing.Point(197, 150);
             this.lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(59, 19);
@@ -97,7 +101,7 @@
             this.lblPassword.Depth = 0;
             this.lblPassword.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblPassword.Location = new System.Drawing.Point(200, 230);
+            this.lblPassword.Location = new System.Drawing.Point(197, 220);
             this.lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(86, 19);
@@ -114,7 +118,7 @@
             this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnLogin.HighEmphasis = true;
             this.btnLogin.Icon = null;
-            this.btnLogin.Location = new System.Drawing.Point(300, 334);
+            this.btnLogin.Location = new System.Drawing.Point(297, 315);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogin.Name = "btnLogin";
@@ -127,11 +131,31 @@
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // checkBox_ShowPassword
+            // 
+            this.checkBox_ShowPassword.AutoSize = true;
+            this.checkBox_ShowPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.checkBox_ShowPassword.Depth = 0;
+            this.checkBox_ShowPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.checkBox_ShowPassword.Location = new System.Drawing.Point(297, 272);
+            this.checkBox_ShowPassword.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBox_ShowPassword.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.checkBox_ShowPassword.MouseState = MaterialSkin.MouseState.HOVER;
+            this.checkBox_ShowPassword.Name = "checkBox_ShowPassword";
+            this.checkBox_ShowPassword.ReadOnly = false;
+            this.checkBox_ShowPassword.Ripple = true;
+            this.checkBox_ShowPassword.Size = new System.Drawing.Size(173, 37);
+            this.checkBox_ShowPassword.TabIndex = 5;
+            this.checkBox_ShowPassword.Text = "Mostrar contraseña";
+            this.checkBox_ShowPassword.UseVisualStyleBackColor = false;
+            this.checkBox_ShowPassword.CheckedChanged += new System.EventHandler(this.ShowPasswordCheckbox_CheckedChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBox_ShowPassword);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
