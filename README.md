@@ -6,7 +6,7 @@
 
 ## Key Features
 
-- **Product Management**: Easily add, update, delete, and view products in the store.
+- **Model.Product Management**: Easily add, update, delete, and view products in the store.
 - **Inventory Tracking**: Monitor stock levels with real-time updates and low-stock alerts.
 - **Order Processing**: Handle customer orders, including creation, status updates, and history tracking.
 - **Customer Management**: Manage customer profiles, including contact details and purchase history.
